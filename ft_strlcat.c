@@ -6,18 +6,18 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:34:50 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/05/27 13:54:29 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:56:38 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_strlcat(char *dest, const char *src, unsigned int destsize)
+size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 {
-	unsigned int	i;
-	unsigned int	lenght_dest;
-	unsigned int	lenght_src;
-	char			*src_bis;
+	size_t	i;
+	size_t	lenght_dest;
+	size_t	lenght_src;
+	char	*src_bis;
 
 	src_bis = (char *)src;
 	i = 0;

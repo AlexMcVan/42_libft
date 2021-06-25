@@ -6,26 +6,22 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:36:20 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/05/21 16:35:28 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/09 18:46:10 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
-	char	*dest_bis;
-	char	*src_bis;
 
-	dest_bis = (char *)dest;
-	src_bis = (char *)src;
 	i = 0;
-	while (src && i < n)
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (i < n)
 	{
-		dest_bis[i] = src_bis[i];
+		((char *)dest)[i] = ((char *)src)[i];
 		i++;
 	}
 	return (dest);

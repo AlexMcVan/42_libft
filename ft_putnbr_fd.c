@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/26 09:56:05 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/10 10:25:59 by amarie-c         ###   ########.fr       */
+/*   Created: 2021/06/10 16:17:19 by amarie-c          #+#    #+#             */
+/*   Updated: 2021/06/10 16:43:13 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *searchin, int searchfor)
+void ft_putnbr_fd(int n, int fd)
 {
-	int		i;
-	char	*searchin_char;
-	char	searchfor_char;
+	int reste;
 
-	searchin_char = (char *)searchin;
-	searchfor_char = (char)searchfor;
-	i = 0;
-	while (searchin_char[i] != '\0')
+	if (n / 10 == 0)
 	{
-		i++;
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n = -n;
+		}
+		ft_putchar_fd(n + '0', fd);
 	}
-	if (searchfor_char == '\0')
-		return (&searchin_char[i]);
-	while (i > -1)
+	else
 	{
-		if (searchin_char[i] == searchfor_char)
-			return (&searchin_char[i]);
-		i--;
+		ft_putnbr_fd(n / 10, fd);
+		reste = n % 10;
+		if (reste < 0)
+			reste = -reste;
+		ft_putchar_fd('0' + reste, fd);
 	}
-	return (NULL);
 }

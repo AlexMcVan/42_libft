@@ -6,7 +6,7 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 15:23:37 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/05/27 17:35:11 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/10 15:44:24 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (len1 == 0 && len2 == 0)
 		return (NULL);
 	junction = ft_calloc(len1 + len2 + 1, sizeof(char));
+	if (junction == NULL)
+		return (NULL);
 	i = 0;
 	while (i < len1)
 	{

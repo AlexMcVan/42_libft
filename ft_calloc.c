@@ -6,7 +6,7 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:26:53 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/05/28 12:08:13 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/10 14:24:53 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nbofelements, size_t sizeofelement)
 	size_t	size;
 
 	size = nbofelements * sizeofelement;
-	space = (void *)malloc((nbofelements + 1) * sizeofelement);
+	space = (void *)malloc((nbofelements) * sizeofelement);
 	if (space == NULL)
 		return (NULL);
 	ft_bzero(space, size);

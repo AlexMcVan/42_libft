@@ -6,13 +6,13 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 17:36:47 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/16 11:54:46 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/14 11:43:06 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*static char	*ft_strrnstr(const char *haystack, const char *needle, size_t len)
+static char	ft_strrnstr*(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
@@ -39,8 +39,7 @@
 			return (haystack_bis + 1 + i - j);
 		i--;
 	}
-	return (NULL);
-}*/
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -71,7 +70,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (end_count == len_set)
 		end = 1;
 	trimmed = ft_calloc(len_s1 - ((begin + end) * len_set) + 1, sizeof(char));
-	if (trimmed == NULL)
+	if (trimmed = NULL)
 		return (NULL);
 	i = 0;
 

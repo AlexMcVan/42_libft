@@ -6,7 +6,7 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 10:32:01 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/04 11:41:18 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/09 19:09:50 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 	dest_bis = (unsigned char *)dest;
 	src_bis = (unsigned char *)src;
 	c_bis = (unsigned char)c;
-	while (dest_bis && i < n)
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (i < n)
 	{
 		if (src_bis[i] == c_bis)
 		{

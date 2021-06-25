@@ -6,11 +6,13 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:58:13 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/05/26 16:25:23 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/06/10 14:20:44 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_space(char c)
+#include "libft.h"
+
+static int	is_space(char c)
 {
 	if ((c == ' ') || (c == '\n') || (c == '\r') || (c == '\t')
 		|| (c == '\v') || (c == '\f'))
@@ -19,7 +21,7 @@ int	is_space(char c)
 		return (0);
 }
 
-int	is_signe(char c)
+static int	is_signe(char c)
 {
 	if ((c == '-') || (c == '+'))
 		return (1);
@@ -27,7 +29,7 @@ int	is_signe(char c)
 		return (0);
 }
 
-int	is_chiffre(char c)
+static int	is_chiffre(char c)
 {
 	if ((c <= '9') && (c >= '0'))
 		return (1);
@@ -37,9 +39,9 @@ int	is_chiffre(char c)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	signe;
-	int	nb;
+	int			i;
+	int			signe;
+	long int	nb;
 
 	i = 0;
 	nb = 0;
@@ -59,5 +61,5 @@ int	ft_atoi(const char *str)
 		nb = nb * 10 + (str[i] - '0');
 		i++;
 	}
-	return (nb * signe);
+	return ((int)(nb * signe));
 }
