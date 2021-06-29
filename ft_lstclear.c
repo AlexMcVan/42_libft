@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/24 17:02:10 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/29 17:43:19 by amarie-c         ###   ########.fr       */
+/*   Created: 2021/06/29 16:02:48 by amarie-c          #+#    #+#             */
+/*   Updated: 2021/06/29 17:32:28 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstadd_back(t_list **alst, t_list *new)
+void ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list *node;
+	t_list	*node;
+	t_list	*temp;
 
-if (!alst || !new)
-	return ;
-	node = *alst;
-	if (!*alst)
-		*alst = new;
-	else
-	{	
-	while(node->next != NULL)
-		node =(*node).next;
-	node -> next = new;
-	new -> next = NULL;
+	node = *lst;
+	while(node)
+	{
+		temp = node -> next;
+		ft_lstdelone(node, del);
+		node = temp;
 	}
+	*lst = NULL;
 }

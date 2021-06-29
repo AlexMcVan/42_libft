@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/24 17:02:10 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/29 17:43:19 by amarie-c         ###   ########.fr       */
+/*   Created: 2021/06/29 13:56:44 by amarie-c          #+#    #+#             */
+/*   Updated: 2021/06/29 14:16:01 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "libft.h"
 
-void ft_lstadd_back(t_list **alst, t_list *new)
+char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_list *node;
+	int	i;
+	char	*buffer;
 
-if (!alst || !new)
-	return ;
-	node = *alst;
-	if (!*alst)
-		*alst = new;
-	else
-	{	
-	while(node->next != NULL)
-		node =(*node).next;
-	node -> next = new;
-	new -> next = NULL;
+	if (!s || !f)
+		return (NULL);
+	buffer = ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!buffer)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+	buffer[i] = f(i, s[i]);
+	i++;
 	}
+	return (buffer);
 }
