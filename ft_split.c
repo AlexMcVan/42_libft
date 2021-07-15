@@ -3,133 +3,116 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 17:04:47 by alex              #+#    #+#             */
-/*   Updated: 2021/06/24 13:59:51 by amarie-c         ###   ########.fr       */
+/*   Created: 2021/07/09 12:44:51 by amarie-c          #+#    #+#             */
+/*   Updated: 2021/07/15 09:49:09 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*#include <stdlib.h>
-#include <string.h>
-#include <stdio.h> */
 
 static int	ft_countword(char const *s, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	while (s[i] == c)
-		i++;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
-			count ++;
-	i++;
-	}
-	return (count + 1);
-}
-
-
-char	**ft_split(char const *s, char c)
-{
-	size_t	i;
-	size_t	j;
-//	size_t	num = 0;
-	size_t	k; 
-	char	**wordlist;
-	int		index;
-
-	if (s == NULL || ft_strlen(s) == 0)
-		return (NULL);
-	wordlist = ft_calloc((ft_countword(s, c) + 1), sizeof(char*));
-	if (wordlist == NULL)
-	{
-		free (wordlist);
-		return (NULL);
-	}
-		i = 0;
-	index = 0;
-	while ((unsigned char)s[i + 1] == c && (unsigned char)s[i] == c)
-	{
-	//	printf("%c, %zu\n", s[i], num++);
-		i++;
-	}
-	while (s[i] != '\0')
-	{
-		if (s[i] == c || !wordlist[index])
-		{
-			while (s[i] == c)
-			{
-				i++;
-			}
-			j = i + 1;
-			while (s[j] != c && j < ft_strlen(s))
-			{	
-				j++;
-			}
-			wordlist[index] = ft_calloc((j - i + 2),sizeof(char));
-			if (wordlist[index] == NULL)
-			{
-				free(wordlist[index]);
-				return (NULL);
-			}
-		}
-			k = 0;
-			while ( i < j - 1 && s[i])
-			{
-				wordlist[index] [k] = s[i];
-				i++;
-				k++;
-			}
-			if ( i < ft_strlen(s) )
-				{
-				wordlist[index] [k] = s[i];
-				k++;
-				}	
-			wordlist[index][k] = '\0';
-			index++;
-		
-		i++;
-	}
-	wordlist [ft_countword(s, c)] = NULL;
-	return (wordlist);
-}
-
-int ft_nbchar(char * s, char c)
-{
-	int i = 0;
-	int count = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] != c)
+		{	
 			count++;
+			while (s[i] != c && s[i + 1] != '\0')
+				i++;
+		}
 		i++;
 	}
 	return (count);
 }
 
-/*int main(void)
+static char	*ft_newword(char const *s, int startword, char *buffer, char c)
 {
-	char	chain[] = "||chi|||||";
-	char	separ ='|';
-//	int i = 0;
-	
-	ft_split(chain, separ);
+	int	s_cursor;
+	int	buffer_cursor;
+	int	nb_char;
 
-	iwhile ( i <= ft_countword(chain, separ))
+	buffer_cursor = 0;
+	nb_char = 0;
+	s_cursor = startword;
+	while (s[s_cursor] != c && s[s_cursor] != '\0')
+		s_cursor++;
+	nb_char = nb_char + s_cursor - startword;
+	s_cursor = startword;
+	buffer = ft_calloc(nb_char + 1, sizeof(char));
+	if (!buffer)
 	{
-		//printf("%s\n", chain);
-		printf("%s\n", ft_split(chain,separ)[i]);
+		free(buffer);
+		return (NULL);
+	}
+	while (s[s_cursor] != c && s[s_cursor] != '\0')
+	{
+		buffer[buffer_cursor] = s[s_cursor];
+		buffer_cursor++;
+		s_cursor++;
+	}
+	buffer[buffer_cursor] = '\0';
+	return (buffer);
+}
+
+static int	*word_start(char const *s, char c, int nb_word)
+{
+	int	*wordstart;
+	int	i;
+	int	word;
+
+	wordstart = ft_calloc(nb_word, sizeof (int));
+	i = 0;
+	word = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			wordstart[word] = i;
+			word ++;
+			while (s[i] != c && s[i + 1] != '\0')
+				i++;
+		}
 		i++;
 	}
-	printf ("chaine : %s \n", chain);
-	printf("nb mots : %d\n",ft_countword(chain, separ));
-	printf("nb char : %lu\n",strlen(chain));
-	printf("nb separateur %d\n", ft_nbchar(chain,separ));
-	return (0);
-} */
+	return (wordstart);
+}
 
+static char	**ft_newwordlist(int nb_word)
+{
+	char	**wordlist;
+
+	wordlist = ft_calloc(nb_word, sizeof (char *));
+	if (!wordlist)
+	{
+		free (wordlist);
+		return (NULL);
+	}
+	return (wordlist);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	char	**wordlist;
+	int		*start_word;
+
+	if (!s || ft_strlen(s) == 0 || !c || ft_countword(s, c) == 0)
+		return (NULL);
+	start_word = word_start(s, c, ft_countword(s, c));
+	wordlist = ft_newwordlist(ft_countword(s, c) + 1);
+	i = 0;
+	while (i < ft_countword(s, c))
+	{
+		wordlist[i] = ft_newword(s, start_word[i], wordlist[i], c);
+		i++;
+	}	
+	wordlist [i] = NULL;
+	return (wordlist);
+}

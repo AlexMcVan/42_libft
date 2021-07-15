@@ -6,16 +6,15 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 13:56:44 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/29 14:16:01 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/01 11:19:57 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	int		i;
 	char	*buffer;
 
 	if (!s || !f)
@@ -26,8 +25,8 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	while (s[i])
 	{
-	buffer[i] = f(i, s[i]);
-	i++;
+		buffer[i] = f(i, s[i]);
+		i++;
 	}
 	return (buffer);
 }

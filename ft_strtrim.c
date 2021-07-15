@@ -6,81 +6,46 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 17:36:47 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/16 11:54:46 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/15 09:43:02 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*static char	*ft_strrnstr(const char *haystack, const char *needle, size_t len)
+size_t	ft_isinside(char compare, char *set)
 {
-	size_t	i;
-	size_t	j;
-	char	*haystack_bis;
-	char	*needle_bis;
-
-	i = 0;
-	j = 0;
-	haystack_bis = (char *)haystack;
-	needle_bis = (char *)needle;
-	if (ft_strlen(needle) == 0 || needle == NULL)
-		return (haystack_bis);
-	while (haystack_bis[i] != 0)
+	while (*set)
 	{
-		i++;
+		if (compare == *set++)
+			return (1);
 	}
-	while (i > -1)
-	{
-		if (haystack_bis[i - len] == needle_bis[len - j -1])
-			j++;
-		else
-			j = 0;
-		if (needle_bis[j] == '\0')
-			return (haystack_bis + 1 + i - j);
-		i--;
-	}
-	return (NULL);
-}*/
+	return (0);
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	len_s1;
-	size_t	len_set;
-	size_t	i;
-	size_t		begin;
-	size_t		end;
-	size_t		end_count;
-	char	*trimmed;
-	char	*s1_bis;
+	size_t	begin;
+	size_t	end;
+	char	*copy;
 
 	begin = 0;
-	end = 0;
-	s1_bis = (char *)s1;
-	len_s1 = ft_strlen(s1);
-	len_set = ft_strlen(set);
-	if (ft_strnstr(s1, set, len_set) != NULL)
-		begin = 1;
-	i = 0;
-	end_count = 0;
-	while(i < len_set)
-	{
-	if (ft_strrchr(s1, set[i]) != NULL)
-		end_count ++;
-	i++;
-	}
-	if (end_count == len_set)
-		end = 1;
-	trimmed = ft_calloc(len_s1 - ((begin + end) * len_set) + 1, sizeof(char));
-	if (trimmed == NULL)
+	end = ft_strlen(s1);
+	if (!s1)
 		return (NULL);
-	i = 0;
-
-	
-	while ( i < len_s1 - ((begin + end) * len_set))
+	if (!set)
+		return (ft_strdup(s1));
+	while (ft_isinside(s1[begin], (char *) set) == 1)
+		begin++;
+	if (begin == ft_strlen(s1))
 	{
-		trimmed[i] = s1_bis[i + (len_set * begin)];
-		i++;
+		copy = ft_strdup("");
+		if (!copy)
+			return (NULL);
+		else
+			return (copy);
 	}
-	trimmed[i] = '\0';
-	return (trimmed);
+	while (ft_isinside(s1[end - 1], (char *) set) == 1)
+		end--;
+	copy = ft_substr(s1, begin, end - begin);
+	return (copy);
 }

@@ -6,13 +6,13 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:15:42 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/24 16:57:59 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/01 11:32:53 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	count;
 

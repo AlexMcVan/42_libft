@@ -6,15 +6,15 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:17:19 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/10 16:43:13 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/01 11:23:27 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int reste;
+	int	reste;
 
 	if (n / 10 == 0)
 	{

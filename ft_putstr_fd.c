@@ -6,18 +6,18 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:04:16 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/24 16:12:12 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/01 11:24:05 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
+	int	i;
+
 	if (!s)
 		return ;
-
 	i = 0;
 	while (s[i] != '\0')
 	{

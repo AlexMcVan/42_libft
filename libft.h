@@ -6,7 +6,7 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:18:01 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/06/29 16:48:25 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/07 11:15:58 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_isalnum(int character);
 int	ft_isalpha(int character);
 int	ft_isdigit(int character);
 int	ft_isprint(int character);
+int	ft_isascii(int character);
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -62,4 +63,7 @@ t_list *ft_lstlast(t_list *lst);
 void ft_lstadd_back(t_list **alst, t_list *new);
 void ft_lstdelone(t_list *lst, void (*del)(void*));
 void ft_lstclear(t_list **lst, void (*del)(void*));
+void ft_lstiter(t_list *lst, void (*f)(void *));
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));
+
 #endif
