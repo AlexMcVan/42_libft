@@ -6,7 +6,7 @@
 /*   By: amarie-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 12:44:51 by amarie-c          #+#    #+#             */
-/*   Updated: 2021/07/15 09:49:09 by amarie-c         ###   ########.fr       */
+/*   Updated: 2021/07/16 12:12:03 by amarie-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,19 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	char	**wordlist;
 	int		*start_word;
+	int		nb_words;
 
-	if (!s || ft_strlen(s) == 0 || !c || ft_countword(s, c) == 0)
+	nb_words = ft_countword(s, c);
+	if (!s || !c)
 		return (NULL);
-	start_word = word_start(s, c, ft_countword(s, c));
-	wordlist = ft_newwordlist(ft_countword(s, c) + 1);
+	start_word = word_start(s, c, nb_words);
+	wordlist = ft_newwordlist(nb_words + 1);
 	i = 0;
-	while (i < ft_countword(s, c))
+	while (i < nb_words)
 	{
 		wordlist[i] = ft_newword(s, start_word[i], wordlist[i], c);
 		i++;
-	}	
+	}
 	wordlist [i] = NULL;
 	return (wordlist);
 }
